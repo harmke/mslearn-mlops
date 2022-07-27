@@ -1,0 +1,29 @@
+name: Create job on push
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Set Azure ML workspace as default
+      run: |
+        az configure --defaults group="${{ secrets.resource_group }}"
+        az configure --defaults workspace="${{ secrets.aml_workspace }}"
+    - name: Create job in Azure ML workspace
+      run: |
+        cd src
+        az ml job create --file job.yml
+
+
