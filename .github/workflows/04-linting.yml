@@ -13,9 +13,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.7'
+    - name: Run linting tests
+      run: | 
+        flake8 src/model/
     - name: Install Flake8
       run: |
         python -m pip install flake8
-    - name: Run linting tests
-      run: | 
-        flake8 --ignore F841 src/model/
