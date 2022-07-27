@@ -19,8 +19,8 @@ jobs:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Set Azure ML workspace as default
       run: |
-        az configure --defaults group="${{ secrets.resource_group }}"
-        az configure --defaults workspace="${{ secrets.aml_workspace }}"
+        az configure --defaults group="rg-dev-mlops"
+        az configure --defaults workspace="mlw-dev-mlops"
     - name: Create job in Azure ML workspace
       run: |
         cd src
