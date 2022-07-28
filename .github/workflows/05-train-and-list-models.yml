@@ -41,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
         name: production
+    needs:
+      [build]
     steps:
     - name: Check out repo
       uses: actions/checkout@main
