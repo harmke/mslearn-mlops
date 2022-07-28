@@ -1,4 +1,4 @@
-name: Train and list models
+name: Deploy model
 
 on:
   workflow_dispatch:
